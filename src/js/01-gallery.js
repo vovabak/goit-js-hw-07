@@ -1,0 +1,40 @@
+import { galleryItems } from './gallery-items.js';
+// Change code below this line
+
+const galleryRef = document.querySelector('.gallery');
+
+const galleryMarkup = galleryItems.map(({ preview, original, description }) =>
+    `<a class="gallery__link" href=${original}>
+        <img class="gallery__image"
+            src=${preview}
+            data-source=${original}
+            alt=${description}
+        />
+    </a>`)
+    .join('');    
+
+galleryRef.insertAdjacentHTML('afterbegin', galleryMarkup);
+
+const galleryItemRef = document.querySelectorAll('.gallery__link');
+
+galleryItemRef.forEach(item => item.addEventListener('click', onGalleryItemClick)); 
+
+function onGalleryItemClick(evt) {
+    evt.preventDefault();   
+}
+
+
+galleryRef.addEventListener('click', onGalleryImageClick);
+
+function onGalleryImageClick(evt) {
+   
+    const galleryImage = evt.target.classList.contains("gallery__image");
+    
+    if (!galleryImage) {
+        return
+    }
+
+     
+    console.log(evt.target);
+    console.log(evt.currentTarget);
+}

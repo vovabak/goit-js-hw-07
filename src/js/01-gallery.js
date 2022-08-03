@@ -34,7 +34,23 @@ function onGalleryImageClick(evt) {
         return
     }
 
-     
-    console.log(evt.target);
-    console.log(evt.currentTarget);
+    const instance = basicLightbox.create(`
+        <div class="modal">            
+            <img class="gallery__image"
+                src=${evt.target.dataset.source}                    
+            />            
+        </div>
+    `)
+
+    instance.show()    
+}
+
+document.addEventListener('keydown', onEscClick);
+
+function onEscClick(evt) {
+    const modalLightbox = document.querySelector('.basicLightbox');
+
+    if (evt.code === 'Escape') {
+        modalLightbox.remove();          
+    }
 }

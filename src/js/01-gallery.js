@@ -48,9 +48,10 @@ function onGalleryImageClick(evt) {
 document.addEventListener('keydown', onEscClick);
 
 function onEscClick(evt) {
-    const modalLightbox = document.querySelector('.basicLightbox');
 
-    if (evt.code === 'Escape') {
-        modalLightbox.remove();          
-    }
+    const modalLightboxIsOpen = document.querySelector('.basicLightbox.basicLightbox--visible');    
+    
+    if (modalLightboxIsOpen && evt.code === 'Escape') {            
+        modalLightboxIsOpen.remove();
+    }    
 }

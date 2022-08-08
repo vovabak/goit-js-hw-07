@@ -15,23 +15,20 @@ const galleryMarkup = galleryItems.map(({ preview, original, description }) =>
 
 galleryRef.insertAdjacentHTML('afterbegin', galleryMarkup);
 
-const galleryItemRef = document.querySelectorAll('.gallery__item');
-
-galleryItemRef.forEach(item => item.addEventListener('click', onGalleryItemClick)); 
-
-function onGalleryItemClick(evt) {
-    evt.preventDefault();
-}
 
 galleryRef.addEventListener('click', onGalleryImageClick);
 
+
 function onGalleryImageClick(evt) {
+
+    evt.preventDefault();
    
     const galleryImage = evt.target.classList.contains("gallery__image");
-    
+
+        
     if (!galleryImage) {
         return
-    }
+    }    
 
     let lightbox = new SimpleLightbox('.gallery a',
         {

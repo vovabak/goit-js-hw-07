@@ -42,16 +42,13 @@ function onGalleryImageClick(evt) {
         </div>
     `)
 
-    instance.show()    
-}
-
-document.addEventListener('keydown', onEscClick);
-
-function onEscClick(evt) {
-
-    const modalLightboxIsOpen = document.querySelector('.basicLightbox.basicLightbox--visible');    
+    instance.show(document.addEventListener('keydown', onEscClick));
     
-    if (modalLightboxIsOpen && evt.code === 'Escape') {            
-        modalLightboxIsOpen.remove();
-    }    
+
+    function onEscClick(evt) {
+    
+        if (evt.code === 'Escape') {            
+            instance.close(document.removeEventListener('keydown', onEscClick));
+        }        
+    }
 }

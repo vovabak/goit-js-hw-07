@@ -40,15 +40,21 @@ function onGalleryImageClick(evt) {
                 src=${evt.target.dataset.source}                    
             />            
         </div>
-    `)
-
-    instance.show(document.addEventListener('keydown', onEscClick));
-    
+    `, {
+        onShow: (instance) => {
+            document.addEventListener('keydown', onEscClick);            
+        },
+        onClose: (instance) => {
+            document.removeEventListener('keydown', onEscClick)            
+        }
+    });
 
     function onEscClick(evt) {
-    
+            
         if (evt.code === 'Escape') {            
-            instance.close(document.removeEventListener('keydown', onEscClick));
+            instance.close();            
         }        
     }
+    
+    instance.show();    
 }
